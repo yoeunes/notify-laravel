@@ -1,0 +1,25 @@
+{
+    "name": "yoeunes/notify-laravel",
+    "license": "MIT",
+    "require": {
+        "yoeunes/notify": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yoeunes\\Notify\\Laravel\\": "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Yoeunes\\Notify\\Laravel\\NotifyServiceProvider"
+            ],
+            "aliases": {
+                "Notify": "Yoeunes\\Notify\\Laravel\\Facades\\Notify"
+            }
+        }
+    }
+}
