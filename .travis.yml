@@ -47,7 +47,7 @@ matrix:
 before_install:
     - phpenv config-rm xdebug.ini
     - if ! [ -z "$STABILITY" ]; then composer config minimum-stability ${STABILITY}; fi;
-    - if ! [ -z "$ILLUMINATE_VERSION" ]; then composer --no-update -v require symfony/support:${ILLUMINATE_VERSION}; fi;
+    - if ! [ -z "$ILLUMINATE_VERSION" ]; then composer --no-update -v require illuminate/support:${ILLUMINATE_VERSION}; fi;
 
 install:
     - travis_retry composer self-update
