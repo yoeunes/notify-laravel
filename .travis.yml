@@ -51,7 +51,7 @@ before_install:
 
 install:
     - travis_retry composer self-update
-    - travis_retry composer update --prefer-source --no-interaction --dev -v
+    - travis_retry composer update --prefer-dist --no-interaction --dev -v
 
 script:
     - travis_retry ./vendor/bin/phpunit
