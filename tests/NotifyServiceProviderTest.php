@@ -16,8 +16,8 @@ class NotifyServiceProviderTest extends TestCase
 
         $config = \Closure::bind(function () {
             return $this->config;
-        }, $notify, '\Yoeunes\Notify\NotifyManager')();
+        }, $notify, '\Yoeunes\Notify\NotifyManager');
 
-        $this->assertInstanceOf('\Yoeunes\Notify\Config\ConfigInterface', $config);
+        $this->assertInstanceOf('\Yoeunes\Notify\Config\ConfigInterface', $config());
     }
 }
