@@ -5,9 +5,9 @@ namespace Yoeunes\Notify\Laravel\Config;
 use Illuminate\Contracts\Config\Repository;
 use Yoeunes\Notify\Config\ConfigInterface;
 
-class Config implements ConfigInterface
+final class Config implements ConfigInterface
 {
-    public const NOTIFY = 'notify';
+    const NOTIFY = 'notify';
 
     private $config;
 

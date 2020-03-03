@@ -1,2 +1,0 @@
-# notify-laravel
-# notify-toastr

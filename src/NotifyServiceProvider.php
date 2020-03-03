@@ -29,7 +29,7 @@ class NotifyServiceProvider extends ServiceProvider
 
         $this->mergeConfigFrom($source, 'notify');
 
-        $this->registerBladeDirectives();
+//        $this->registerBladeDirectives();
     }
 
     /**
