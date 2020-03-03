@@ -10,44 +10,44 @@ env:
     global:
         - COMPOSER_ALLOW_XDEBUG=0
         - COMPOSER_MEMORY_LIMIT=-1
-        - ILLUMINATE_VERSION='5.0.*'
+
 matrix:
     fast_finish: true
     include:
         -   php: 5.4
             dist: precise
-            env: ILLUMINATE_VERSION='5.0.*'
+            env: LARAVEL_VERSION='5.0.*'
         -   php: 5.5
             dist: precise
-            env: ILLUMINATE_VERSION='5.1.*'
+            env: LARAVEL_VERSION='5.1.*'
         -   php: 5.5
             dist: precise
-            env: ILLUMINATE_VERSION='5.2.*'
+            env: LARAVEL_VERSION='5.2.*'
         -   php: 5.6
-            env: ILLUMINATE_VERSION='5.3.*'
+            env: LARAVEL_VERSION='5.3.*'
         -   php: 5.6
-            env: ILLUMINATE_VERSION='5.4.*'
+            env: LARAVEL_VERSION='5.4.*'
         -   php: 7.0
-            env: ILLUMINATE_VERSION='5.5.*'
+            env: LARAVEL_VERSION='5.5.*'
         -   php: 7.1
-            env: ILLUMINATE_VERSION='5.6.*'
+            env: LARAVEL_VERSION='5.6.*'
         -   php: 7.1
-            env: ILLUMINATE_VERSION='5.7.*'
+            env: LARAVEL_VERSION='5.7.*'
         -   php: 7.1
-            env: ILLUMINATE_VERSION='5.8.*'
+            env: LARAVEL_VERSION='5.8.*'
         -   php: 7.2
-            env: ILLUMINATE_VERSION='6.*'
+            env: LARAVEL_VERSION='6.*'
         -   php: 7.2
-            env: ILLUMINATE_VERSION='7.*'
+            env: LARAVEL_VERSION='7.*'
         -   php: 7.3
-            env: ILLUMINATE_VERSION='dev-master'
+            env: LARAVEL_VERSION='dev-master'
     allow_failures:
         -   env: STABILITY="dev"
 
 before_install:
     - phpenv config-rm xdebug.ini
     - if ! [ -z "$STABILITY" ]; then composer config minimum-stability ${STABILITY}; fi;
-    - if ! [ -z "$ILLUMINATE_VERSION" ]; then composer --no-update -v require illuminate/support:${ILLUMINATE_VERSION}; fi;
+    - if ! [ -z "$LARAVEL_VERSION" ]; then composer --no-update -v require laravel/framework:${LARAVEL_VERSION}; fi;
 
 install:
     - travis_retry composer self-update
