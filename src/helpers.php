@@ -1,6 +1,6 @@
 <?php
 
-if (! function_exists('notify')) {
+if (!function_exists('notify')) {
     /**
      * @param string $message
      * @param string $type

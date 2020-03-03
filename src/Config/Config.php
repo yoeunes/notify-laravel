@@ -18,6 +18,6 @@ final class Config implements ConfigInterface
 
     public function get($key, $default = null)
     {
-        return $this->config->get(self::NOTIFY . '.' . $key, $default);
+        return $this->config->get(self::NOTIFY.'.'.$key, $default);
     }
 }
