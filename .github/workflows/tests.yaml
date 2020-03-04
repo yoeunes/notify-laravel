@@ -4,7 +4,7 @@ on:
     push:
     pull_request:
     schedule:
-        -   cron: '0 * * * *'
+        -   cron: '0 0 * * *'
 
 jobs:
     test:
@@ -12,7 +12,7 @@ jobs:
         strategy:
             fail-fast: true
             matrix:
-                laravel: [7.*, 6.*, 5.8.*, 5.7.*, 5.6.*, 5.5.*, 5.4.*, 5.3.*, 5.2.*, 5.1.*, 5.0.*]
+                laravel: [7.*, 6.*, 5.8.*, 5.7.*, 5.6.*, 5.5.*, 5.4.*, 5.3.*, 5.2.*, 5.1.*, 5.0.*, 4.2.*, 4.1.*, 4.0.*]
                 dependency-version: [prefer-lowest, prefer-stable]
                 include:
                     -   laravel: 7.*
@@ -68,6 +68,21 @@ jobs:
                     -   laravel: 5.0.*
                         testbench: 3.0.*
                         php: 5.4
+                        phpunit: 4.8.*
+
+                    -   laravel: 4.2.*
+                        testbench: 2.2.*
+                        php: 5.4
+                        phpunit: 4.8.*
+
+                    -   laravel: 4.1.*
+                        testbench: 2.1.*
+                        php: 5.3
+                        phpunit: 4.8.*
+
+                    -   laravel: 4.0.*
+                        testbench: 2.0.*
+                        php: 5.3
                         phpunit: 4.8.*
 
         name: L${{ matrix.laravel }} - P${{ matrix.php }} - ${{ matrix.dependency-version }}

@@ -2,22 +2,22 @@
 
 namespace Yoeunes\Notify\Laravel\Config;
 
-use Illuminate\Contracts\Config\Repository;
+use Illuminate\Config\Repository;
 use Yoeunes\Notify\Config\ConfigInterface;
 
 final class Config implements ConfigInterface
 {
-    const NOTIFY = 'notify';
-
     private $config;
+    private $separator;
 
-    public function __construct(Repository $config)
+    public function __construct(Repository $config, $separator = '.')
     {
         $this->config = $config;
+        $this->separator = $separator;
     }
 
     public function get($key, $default = null)
     {
-        return $this->config->get(self::NOTIFY.'.'.$key, $default);
+        return $this->config->get('notify' . $this->separator . $key, $default);
     }
 }

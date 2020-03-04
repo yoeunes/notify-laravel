@@ -11,11 +11,11 @@ class TestCase extends Orchestra
      *
      * @return array
      */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders()
     {
-        return [
+        return array(
             'Yoeunes\Notify\Laravel\NotifyServiceProvider',
-        ];
+        );
     }
 
     /**

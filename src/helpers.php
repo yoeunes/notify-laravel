@@ -9,7 +9,7 @@ if (!function_exists('notify')) {
      *
      * @return \Yoeunes\Notify\NotifyManager
      */
-    function notify($message = null, $type = 'success', $title = '', array $options = [])
+    function notify($message = null, $type = 'success', $title = '', array $options = array())
     {
         if (is_null($message) && 0 === func_num_args()) {
             return app('notify');

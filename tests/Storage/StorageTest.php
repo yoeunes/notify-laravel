@@ -9,7 +9,7 @@ final class StorageTest extends TestCase
 {
     public function test_simple()
     {
-        $session = new Storage($this->app->make('session.store'));
+        $session = new Storage($this->app->make('session'));
 
         $session->flash('notifications', array('type' => 'success', 'title' => 'success title'));
         $this->assertEquals(array('type' => 'success', 'title' => 'success title'), $session->get('notifications'));

@@ -2,32 +2,18 @@
 
 namespace Yoeunes\Notify\Laravel;
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Lumen\Application as LumenApplication;
-use Illuminate\Foundation\Application as LaravelApplication;
-use Yoeunes\Notify\Laravel\Config\Config;
-use Yoeunes\Notify\NotifyManager;
+use Yoeunes\Notify\Laravel\ServiceProvider\ServiceProviderManager;
 
-class NotifyServiceProvider extends ServiceProvider
+final class NotifyServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application events.
      */
     public function boot()
     {
-        $source = realpath($raw = __DIR__.'/../config/notify.php') ?: $raw;
-
-        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
-            $this->publishes([$source => config_path('notify.php')], 'config');
-        } elseif ($this->app instanceof LumenApplication) {
-            $this->app->configure('notify');
-        }
-
-        $this->mergeConfigFrom($source, 'notify');
-
-//        $this->registerBladeDirectives();
+       $manager = new ServiceProviderManager($this);
+       $manager->boot();
     }
 
     /**
@@ -35,38 +21,8 @@ class NotifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ($this->app instanceof LumenApplication) {
-            $this->app->register('\Illuminate\Session\SessionServiceProvider');
-            $this->app->configure('session');
-        }
-
-        $this->registerNotifyManager();
-    }
-
-    public function registerNotifyManager()
-    {
-        $this->app->singleton('notify', function (Application $app) {
-            $config = $app['config'];
-
-            return new NotifyManager(new Config($config));
-        });
-
-        $this->app->alias('notify', '\Yoeunes\Notify\NotifyManager');
-    }
-
-    public function registerBladeDirectives()
-    {
-        Blade::directive('notify_render', function () {
-            return "<?php echo app('notify')->render(); ?>";
-        });
-
-        Blade::directive('notify_css', function () {
-            return "<?php echo app('notify')->renderStyles(); ?>";
-        });
-
-        Blade::directive('notify_js', function () {
-            return "<?php echo app('notify')->renderScripts(); ?>";
-        });
+        $manager = new ServiceProviderManager($this);
+        $manager->register();
     }
 
     /**
@@ -76,8 +32,32 @@ class NotifyServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [
+        return array(
             'notify',
-        ];
+        );
+    }
+
+    /**
+     * @return \Illuminate\Container\Container
+     */
+    public function getApplication()
+    {
+        return $this->app;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function mergeConfigFrom($path, $key)
+    {
+        parent::mergeConfigFrom($path, $key);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function publishes(array $paths, $groups = null)
+    {
+        parent::publishes($paths, $groups);
     }
 }
