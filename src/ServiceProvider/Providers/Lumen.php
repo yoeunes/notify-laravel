@@ -14,7 +14,7 @@ final class Lumen extends Laravel
 
     public function publishConfig(NotifyServiceProvider $provider)
     {
-        $source = realpath($raw = __DIR__ . '/../../../resources/config/config.php') ?: $raw;
+        $source = realpath($raw = __DIR__.'/../../../resources/config/config.php') ?: $raw;
 
         $this->app->configure('notify');
 

@@ -52,6 +52,6 @@ final class ServiceProviderManager
             }
         }
 
-        throw new \InvalidArgumentException("Service Provider not found.");
+        throw new \InvalidArgumentException('Service Provider not found.');
     }
 }
