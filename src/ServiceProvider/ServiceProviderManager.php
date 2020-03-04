@@ -7,6 +7,8 @@ use Yoeunes\Notify\Laravel\ServiceProvider\Providers\ServiceProviderInterface;
 
 final class ServiceProviderManager
 {
+    private $provider;
+
     /**
      * @var ServiceProviderInterface[]
      */
@@ -44,11 +46,15 @@ final class ServiceProviderManager
      */
     private function resolveServiceProvider()
     {
+        if ($this->provider instanceof ServiceProviderInterface) {
+            return $this->provider;
+        }
+
         foreach ($this->providers as $providerClass) {
             $provider = new $providerClass($this->notifyServiceProvider->getApplication());
 
             if ($provider->shouldBeUsed()) {
-                return $provider;
+                return $this->provider = $provider;
             }
         }
 

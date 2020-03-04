@@ -5,11 +5,11 @@ namespace Yoeunes\Notify\Laravel\ServiceProvider\Providers;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Blade;
 
-class Laravel50 extends Laravel
+final class Laravel50 extends Laravel
 {
     public function shouldBeUsed()
     {
-        return $this->app instanceof Application && 0 === strpos(Application::VERSION, '5.0.');
+        return $this->app instanceof Application && 0 === strpos(Application::VERSION, '5.0');
     }
 
     public function registerBladeDirectives()
