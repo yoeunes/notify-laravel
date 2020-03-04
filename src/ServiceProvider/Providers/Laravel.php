@@ -25,7 +25,7 @@ class Laravel implements ServiceProviderInterface
 
     public function publishConfig(NotifyServiceProvider $provider)
     {
-        $source = realpath($raw = __DIR__ . '/../../../resources/config/config.php') ?: $raw;
+        $source = realpath($raw = __DIR__.'/../../../resources/config/config.php') ?: $raw;
 
         $provider->publishes(array($source => config_path('notify.php')), 'config');
 

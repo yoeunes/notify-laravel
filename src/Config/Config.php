@@ -8,6 +8,7 @@ use Yoeunes\Notify\Config\ConfigInterface;
 final class Config implements ConfigInterface
 {
     private $config;
+
     private $separator;
 
     public function __construct(Repository $config, $separator = '.')
@@ -18,6 +19,6 @@ final class Config implements ConfigInterface
 
     public function get($key, $default = null)
     {
-        return $this->config->get('notify' . $this->separator . $key, $default);
+        return $this->config->get('notify'.$this->separator.$key, $default);
     }
 }

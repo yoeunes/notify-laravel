@@ -12,8 +12,8 @@ final class NotifyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       $manager = new ServiceProviderManager($this);
-       $manager->boot();
+        $manager = new ServiceProviderManager($this);
+        $manager->boot();
     }
 
     /**
@@ -46,7 +46,7 @@ final class NotifyServiceProvider extends ServiceProvider
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function mergeConfigFrom($path, $key)
     {
@@ -54,7 +54,7 @@ final class NotifyServiceProvider extends ServiceProvider
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function publishes(array $paths, $groups = null)
     {
