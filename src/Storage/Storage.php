@@ -10,7 +10,6 @@ final class Storage implements StorageInterface
 
     public function __construct($session)
     {
-        echo str_repeat(PHP_EOL, 3).get_class($session).str_repeat(PHP_EOL, 3);
         $this->session = $session;
     }
 
